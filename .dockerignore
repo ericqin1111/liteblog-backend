@@ -1,0 +1,17 @@
+.git
+.gitignore
+.idea
+.vscode
+*.iml
+mvnw
+mvnw.cmd
+log
+log.txt
+target
+
+# build outputs
+**/target
+
+# OS
+.DS_Store
+Thumbs.db
