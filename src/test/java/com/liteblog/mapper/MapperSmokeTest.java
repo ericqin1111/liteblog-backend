@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
@@ -17,6 +18,9 @@ class MapperSmokeTest {
     @Test
     void shouldLoadDefaultAdmin() {
         Admin admin = adminMapper.selectById(1);
+        
+        String pwd = "rusty0916";
+        System.out.println("bcr:"+new BCryptPasswordEncoder().encode(pwd));
         Assertions.assertNotNull(admin, "Expected default admin to exist; run schema.sql before testing.");
     }
 }

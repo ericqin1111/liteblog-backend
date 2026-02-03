@@ -11,13 +11,13 @@ RUN mvn -q -e -DskipTests dependency:go-offline
 COPY src ./src
 RUN mvn -q -DskipTests package
 
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 ENV SPRING_PROFILES_ACTIVE=prod \
     JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
 
-COPY --from=builder /app/target/*.jar /app/app.jar
+COPY --from=builder /app/target/app.jar /app/app.jar
 
 EXPOSE 8080
 
