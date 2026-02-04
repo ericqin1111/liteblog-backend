@@ -36,14 +36,16 @@ CREATE TABLE IF NOT EXISTS admin (
     id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',
     username VARCHAR(50) UNIQUE NOT NULL COMMENT '用户名',
     password VARCHAR(255) NOT NULL COMMENT '密码（BCrypt 加密）',
+    email VARCHAR(100) DEFAULT NULL COMMENT '邮箱',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理员表';
 
 -- 插入默认管理员账号
 -- 用户名: admin
 -- 密码: admin123
-INSERT INTO admin (username, password) VALUES
-('admin', '$2a$10$7OrbgiKRXA33vZILx7v67ewFVZe5UQuJWUId2g6rWLZB5r11Ezy76')
+-- 邮箱: admin@example.com
+INSERT INTO admin (username, password, email) VALUES
+('admin', '$2a$10$7OrbgiKRXA33vZILx7v67ewFVZe5UQuJWUId2g6rWLZB5r11Ezy76', 'admin@example.com')
 ON DUPLICATE KEY UPDATE username = username;
 
 -- 插入测试文章数据

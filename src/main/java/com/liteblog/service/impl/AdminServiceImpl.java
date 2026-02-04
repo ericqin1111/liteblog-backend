@@ -33,4 +33,17 @@ public class AdminServiceImpl implements AdminService {
         String token = jwtUtil.generateToken(admin.getUsername());
         return new LoginResponse(token, admin.getUsername());
     }
+
+    @Override
+    public boolean resetPassword(String username, String email, String newPassword) {
+        Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>()
+                .eq("username", username)
+                .eq("email", email));
+        if (admin == null) {
+            return false;
+        }
+
+        admin.setPassword(passwordEncoder.encode(newPassword));
+        return adminMapper.updateById(admin) > 0;
+    }
 }

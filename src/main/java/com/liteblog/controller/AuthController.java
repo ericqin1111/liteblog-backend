@@ -2,6 +2,7 @@ package com.liteblog.controller;
 
 import com.liteblog.dto.LoginRequest;
 import com.liteblog.dto.LoginResponse;
+import com.liteblog.dto.ResetPasswordRequest;
 import com.liteblog.service.AdminService;
 import com.liteblog.util.ResponseUtil;
 import jakarta.validation.Valid;
@@ -32,5 +33,19 @@ public class AuthController {
                     .body(ResponseUtil.error(401, "用户名或密码错误"));
         }
         return ResponseEntity.ok(ResponseUtil.success("登录成功", response));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<ResponseUtil<Void>> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
+        boolean success = adminService.resetPassword(
+                request.getUsername(),
+                request.getEmail(),
+                request.getNewPassword()
+        );
+        if (!success) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ResponseUtil.error(400, "用户名或邮箱不匹配"));
+        }
+        return ResponseEntity.ok(ResponseUtil.success("密码重置成功", null));
     }
 }
