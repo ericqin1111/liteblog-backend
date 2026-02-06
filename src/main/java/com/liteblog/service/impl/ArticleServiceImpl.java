@@ -41,6 +41,25 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<Article> listAdmin(int page, int size, String category, Integer status) {
+        Page<Article> result = new Page<>(page, size);
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        if (StringUtils.hasText(category)) {
+            wrapper.eq("category", category);
+        }
+        if (status != null) {
+            wrapper.eq("status", status);
+        }
+        wrapper.orderByDesc("created_at");
+        return articleMapper.selectPage(result, wrapper);
+    }
+
+    @Override
+    public Article getById(Long id) {
+        return articleMapper.selectById(id);
+    }
+
+    @Override
     public Article create(ArticleCreateRequest request) {
         Article article = new Article();
         article.setTitle(request.getTitle());

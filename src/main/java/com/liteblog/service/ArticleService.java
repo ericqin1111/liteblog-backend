@@ -11,6 +11,10 @@ public interface ArticleService {
 
     Article getPublishedById(Long id);
 
+    Page<Article> listAdmin(int page, int size, String category, Integer status);
+
+    Article getById(Long id);
+
     Article create(ArticleCreateRequest request);
 
     boolean update(Long id, ArticleUpdateRequest request);

@@ -50,6 +50,26 @@ public class ArticleController {
         return ResponseEntity.ok(ResponseUtil.success(article));
     }
 
+    @GetMapping("/admin/articles")
+    public ResponseUtil<?> listAdmin(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Integer status) {
+        Page<Article> result = articleService.listAdmin(page, size, category, status);
+        return ResponseUtil.page(result.getTotal(), result.getCurrent(), result.getSize(), result.getRecords());
+    }
+
+    @GetMapping("/admin/articles/{id}")
+    public ResponseEntity<ResponseUtil<Article>> getAdminById(@PathVariable Long id) {
+        Article article = articleService.getById(id);
+        if (article == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ResponseUtil.error(404, "文章不存在"));
+        }
+        return ResponseEntity.ok(ResponseUtil.success(article));
+    }
+
     @PostMapping("/admin/articles")
     public ResponseEntity<ResponseUtil<Article>> create(@Valid @RequestBody ArticleCreateRequest request) {
         Article article = articleService.create(request);
