@@ -12,6 +12,13 @@ spring:
       max-wait: 60000
       test-while-idle: true
       validation-query: SELECT 1
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:123456}
+      database: ${REDIS_DATABASE:0}
+      timeout: 5000ms
 
 mybatis-plus:
   configuration:

@@ -24,14 +24,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public LoginResponse login(String username, String password) {
+    public LoginResponse login(String username, String password, String sessionId) {
         Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>().eq("username", username));
         if (admin == null || !passwordEncoder.matches(password, admin.getPassword())) {
             return null;
         }
 
-        String token = jwtUtil.generateToken(admin.getUsername());
-        return new LoginResponse(token, admin.getUsername());
+        String accessToken = jwtUtil.generateAccessToken(admin.getUsername(), sessionId);
+        return new LoginResponse(accessToken, accessToken, admin.getUsername());
     }
 
     @Override

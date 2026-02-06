@@ -12,5 +12,9 @@ server:
 # JWT 配置
 jwt:
   secret: ${JWT_SECRET:liteblog-secret-key-for-development-only-change-in-production}
-  expiration: 86400000  # 24小时（毫秒）
+  access-expiration: 900000  # 15分钟（毫秒）
+  refresh-expiration: 604800000  # 7天（毫秒）
   issuer: liteblog
+  refresh-cookie-secure: ${JWT_REFRESH_COOKIE_SECURE:false}
+  refresh-cookie-same-site: ${JWT_REFRESH_COOKIE_SAME_SITE:Lax}
+  refresh-cookie-path: ${JWT_REFRESH_COOKIE_PATH:/api/auth}

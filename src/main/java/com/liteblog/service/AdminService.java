@@ -4,7 +4,7 @@ import com.liteblog.dto.LoginResponse;
 
 public interface AdminService {
 
-    LoginResponse login(String username, String password);
+    LoginResponse login(String username, String password, String sessionId);
 
     boolean resetPassword(String username, String email, String newPassword);
 }

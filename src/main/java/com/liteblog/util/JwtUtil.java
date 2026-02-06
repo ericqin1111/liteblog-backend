@@ -13,11 +13,20 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
+    private static final String CLAIM_TOKEN_TYPE = "tokenType";
+    private static final String CLAIM_SESSION_ID = "sessionId";
+    private static final String CLAIM_JTI = "jti";
+    private static final String TOKEN_TYPE_ACCESS = "access";
+    private static final String TOKEN_TYPE_REFRESH = "refresh";
+
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration}")
-    private Long expiration;
+    @Value("${jwt.access-expiration}")
+    private Long accessExpiration;
+
+    @Value("${jwt.refresh-expiration}")
+    private Long refreshExpiration;
 
     @Value("${jwt.issuer}")
     private String issuer;
@@ -32,15 +41,36 @@ public class JwtUtil {
     /**
      * 生成 Token
      */
-    public String generateToken(String username) {
+    public String generateAccessToken(String username, String sessionId) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + expiration);
+        Date expiryDate = new Date(now.getTime() + accessExpiration);
 
         return Jwts.builder()
                 .subject(username)
                 .issuer(issuer)
                 .issuedAt(now)
                 .expiration(expiryDate)
+                .claim(CLAIM_TOKEN_TYPE, TOKEN_TYPE_ACCESS)
+                .claim(CLAIM_SESSION_ID, sessionId)
+                .signWith(getSignKey())
+                .compact();
+    }
+
+    /**
+     * 生成 Refresh Token
+     */
+    public String generateRefreshToken(String username, String sessionId, String jti) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + refreshExpiration);
+
+        return Jwts.builder()
+                .subject(username)
+                .issuer(issuer)
+                .issuedAt(now)
+                .expiration(expiryDate)
+                .claim(CLAIM_TOKEN_TYPE, TOKEN_TYPE_REFRESH)
+                .claim(CLAIM_SESSION_ID, sessionId)
+                .claim(CLAIM_JTI, jti)
                 .signWith(getSignKey())
                 .compact();
     }
@@ -57,13 +87,36 @@ public class JwtUtil {
      * 验证 Token 是否有效
      */
     public boolean validateToken(String token) {
+        return validateAccessToken(token);
+    }
+
+    public boolean validateAccessToken(String token) {
+        return validateTokenByType(token, TOKEN_TYPE_ACCESS);
+    }
+
+    public boolean validateRefreshToken(String token) {
+        return validateTokenByType(token, TOKEN_TYPE_REFRESH);
+    }
+
+    private boolean validateTokenByType(String token, String tokenType) {
         try {
             Claims claims = parseToken(token);
             return !claims.getExpiration().before(new Date())
-                    && issuer.equals(claims.getIssuer());
+                    && issuer.equals(claims.getIssuer())
+                    && tokenType.equals(claims.get(CLAIM_TOKEN_TYPE, String.class));
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String getSessionId(String token) {
+        Claims claims = parseToken(token);
+        return claims.get(CLAIM_SESSION_ID, String.class);
+    }
+
+    public String getJti(String token) {
+        Claims claims = parseToken(token);
+        return claims.get(CLAIM_JTI, String.class);
     }
 
     /**
@@ -84,5 +137,9 @@ public class JwtUtil {
         Claims claims = parseToken(token);
         Date expiration = claims.getExpiration();
         return expiration.getTime() - System.currentTimeMillis();
+    }
+
+    public long getRefreshExpiration() {
+        return refreshExpiration;
     }
 }
