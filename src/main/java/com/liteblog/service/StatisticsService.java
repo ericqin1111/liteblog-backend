@@ -1,6 +1,8 @@
 package com.liteblog.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.liteblog.dto.DailyTrendDTO;
+import com.liteblog.dto.IpRecordDTO;
 import com.liteblog.dto.OverviewStats;
 import com.liteblog.dto.PopularArticleDTO;
 import com.liteblog.dto.RecentVisitDTO;
@@ -14,4 +16,8 @@ public interface StatisticsService {
     List<PopularArticleDTO> getPopularArticles(int limit);
 
     Page<RecentVisitDTO> getRecentVisits(int page, int size);
+
+    Page<IpRecordDTO> getIpRecords(int page, int size);
+
+    List<DailyTrendDTO> getDailyTrend(int days);
 }

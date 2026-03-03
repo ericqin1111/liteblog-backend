@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +22,9 @@ import java.util.regex.Pattern;
 public class AccessLogInterceptor implements HandlerInterceptor {
 
     private static final Pattern ARTICLE_ID_PATTERN = Pattern.compile("/api/articles/(\\d+)");
+    private static final List<String> BOT_KEYWORDS = List.of(
+            "bot", "spider", "crawler", "googlebot", "baiduspider", "bytespider", "semrushbot"
+    );
 
     private final AccessLogService accessLogService;
     private final Executor accessLogExecutor;
@@ -42,6 +47,12 @@ public class AccessLogInterceptor implements HandlerInterceptor {
             return true;
         }
         String userAgent = request.getHeader("User-Agent");
+        if (uri != null && uri.startsWith("/api/admin/")) {
+            return true;
+        }
+        if (isBotUserAgent(userAgent)) {
+            return true;
+        }
         Long articleId = resolveArticleId(uri);
 
         log.info("Access: IP={}, URI={}, UserAgent={}", ip, uri, userAgent);
@@ -66,26 +77,37 @@ public class AccessLogInterceptor implements HandlerInterceptor {
 
     private Long resolveArticleId(String uri) {
         Matcher matcher = ARTICLE_ID_PATTERN.matcher(uri);
-        if (matcher.matches()) {
+        if (matcher.find()) {
             return Long.parseLong(matcher.group(1));
         }
         return null;
+    }
+
+    private boolean isBotUserAgent(String userAgent) {
+        if (userAgent == null || userAgent.isBlank()) {
+            return false;
+        }
+        String normalized = userAgent.toLowerCase(Locale.ROOT);
+        return BOT_KEYWORDS.stream().anyMatch(normalized::contains);
     }
 
     /**
      * 获取客户端真实 IP
      */
     private String getClientIp(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("X-Real-IP");
+        String forwarded = request.getHeader("X-Forwarded-For");
+        if (forwarded != null && !forwarded.isBlank()) {
+            for (String part : forwarded.split(",")) {
+                String candidate = part.trim();
+                if (!candidate.isEmpty() && !"unknown".equalsIgnoreCase(candidate)) {
+                    return candidate;
+                }
+            }
         }
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
+        String realIp = request.getHeader("X-Real-IP");
+        if (realIp != null && !realIp.isBlank() && !"unknown".equalsIgnoreCase(realIp)) {
+            return realIp;
         }
-        if (ip != null && ip.contains(",")) {
-            ip = ip.split(",")[0].trim();
-        }
-        return ip;
+        return request.getRemoteAddr();
     }
 }
