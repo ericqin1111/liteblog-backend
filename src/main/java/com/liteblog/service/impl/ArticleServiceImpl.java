@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> listPublished(int page, int size, String category, String keyword) {
+    public Page<Article> listPublished(int page, int size, String category, String keyword, String sort) {
         Page<Article> result = new Page<>(page, size);
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("status", 1);
@@ -51,7 +51,11 @@ public class ArticleServiceImpl implements ArticleService {
                     .or()
                     .like("category", keyword));
         }
-        wrapper.orderByDesc("created_at");
+        if ("popular".equals(sort)) {
+            wrapper.orderByDesc("view_count");
+        } else {
+            wrapper.orderByDesc("created_at");
+        }
         return articleMapper.selectPage(result, wrapper);
     }
 

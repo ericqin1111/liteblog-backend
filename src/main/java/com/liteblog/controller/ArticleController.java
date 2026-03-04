@@ -38,8 +38,9 @@ public class ArticleController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false) String keyword) {
-        Page<Article> result = articleService.listPublished(page, size, category, keyword);
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false, defaultValue = "") String sort) {
+        Page<Article> result = articleService.listPublished(page, size, category, keyword, sort);
         return ResponseUtil.page(result.getTotal(), result.getCurrent(), result.getSize(), result.getRecords());
     }
 
