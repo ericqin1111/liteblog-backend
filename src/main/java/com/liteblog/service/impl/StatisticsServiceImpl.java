@@ -31,19 +31,16 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public OverviewStats getOverview() {
-        Long pv = accessLogMapper.countTotalPv();
-        Long uv = accessLogMapper.countDistinctUv();
-        Long today = accessLogMapper.countTodayVisits();
+        Long todayPv = accessLogMapper.countTodayPv();
+        Long todayUv = accessLogMapper.countTodayUv();
+        Long weekUv = accessLogMapper.countWeekUv();
         Long totalArticles = articleMapper.selectCount(new QueryWrapper<>());
 
         OverviewStats stats = new OverviewStats();
-        stats.setPv(pv);
-        stats.setUv(uv);
-        stats.setToday(today);
+        stats.setTodayPv(todayPv);
+        stats.setTodayUv(todayUv);
+        stats.setWeekUv(weekUv);
         stats.setTotalArticles(totalArticles);
-        stats.setTotalPv(pv);
-        stats.setTotalUv(uv);
-        stats.setTodayVisits(today);
         return stats;
     }
 

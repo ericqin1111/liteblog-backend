@@ -5,17 +5,11 @@ import lombok.Data;
 @Data
 public class OverviewStats {
 
-    private Long pv;
-
-    private Long uv;
-
-    private Long today;
+    private Long todayPv;
 
     private Long totalArticles;
 
-    private Long totalPv;
+    private Long todayUv;
 
-    private Long totalUv;
-
-    private Long todayVisits;
+    private Long weekUv;
 }

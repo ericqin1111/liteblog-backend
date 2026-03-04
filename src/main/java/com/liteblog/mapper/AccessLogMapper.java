@@ -14,19 +14,31 @@ import java.util.List;
 @Mapper
 public interface AccessLogMapper extends BaseMapper<AccessLog> {
 
-    @Select("SELECT COUNT(*) FROM access_log")
-    Long countTotalPv();
-
-    @Select("SELECT COUNT(DISTINCT ip_address) FROM access_log")
-    Long countDistinctUv();
-
     @Select("""
             SELECT COUNT(*)
             FROM access_log
             WHERE access_time >= CURDATE()
               AND access_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+              AND uri NOT LIKE '/api/admin/%'
             """)
-    Long countTodayVisits();
+    Long countTodayPv();
+
+    @Select("""
+            SELECT COUNT(DISTINCT ip_address)
+            FROM access_log
+            WHERE access_time >= CURDATE()
+              AND access_time < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+              AND uri NOT LIKE '/api/admin/%'
+            """)
+    Long countTodayUv();
+
+    @Select("""
+            SELECT COUNT(DISTINCT ip_address)
+            FROM access_log
+            WHERE access_time >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+              AND uri NOT LIKE '/api/admin/%'
+            """)
+    Long countWeekUv();
 
     @Select("""
             SELECT al.article_id AS id,
