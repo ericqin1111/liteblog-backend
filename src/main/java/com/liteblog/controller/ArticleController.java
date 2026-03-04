@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ArticleController {
 
@@ -35,9 +37,15 @@ public class ArticleController {
     public ResponseUtil<?> listPublished(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String category) {
-        Page<Article> result = articleService.listPublished(page, size, category);
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String keyword) {
+        Page<Article> result = articleService.listPublished(page, size, category, keyword);
         return ResponseUtil.page(result.getTotal(), result.getCurrent(), result.getSize(), result.getRecords());
+    }
+
+    @GetMapping("/articles/categories")
+    public ResponseUtil<List<String>> listPublishedCategories() {
+        return ResponseUtil.success(articleService.listPublishedCategories());
     }
 
     @GetMapping("/articles/{id}")

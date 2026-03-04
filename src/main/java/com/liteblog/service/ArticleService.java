@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liteblog.dto.ArticleCreateRequest;
 import com.liteblog.dto.ArticleUpdateRequest;
 import com.liteblog.entity.Article;
+import java.util.List;
 
 public interface ArticleService {
 
-    Page<Article> listPublished(int page, int size, String category);
+    Page<Article> listPublished(int page, int size, String category, String keyword);
+
+    List<String> listPublishedCategories();
 
     Article getPublishedById(Long id);
 

@@ -18,6 +18,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -35,15 +37,35 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> listPublished(int page, int size, String category) {
+    public Page<Article> listPublished(int page, int size, String category, String keyword) {
         Page<Article> result = new Page<>(page, size);
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("status", 1);
         if (StringUtils.hasText(category)) {
             wrapper.eq("category", category);
         }
+        if (StringUtils.hasText(keyword)) {
+            wrapper.and(w -> w.like("title", keyword)
+                    .or()
+                    .like("tags", keyword)
+                    .or()
+                    .like("category", keyword));
+        }
         wrapper.orderByDesc("created_at");
         return articleMapper.selectPage(result, wrapper);
+    }
+
+    @Override
+    public List<String> listPublishedCategories() {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.select("DISTINCT category")
+                .eq("status", 1)
+                .isNotNull("category")
+                .ne("category", "")
+                .orderByAsc("category");
+        return articleMapper.selectObjs(wrapper).stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 
     @Override
