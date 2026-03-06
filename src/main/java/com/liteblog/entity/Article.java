@@ -1,11 +1,14 @@
 package com.liteblog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.liteblog.dto.TagVO;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @TableName("article")
@@ -20,8 +23,6 @@ public class Article {
 
     private String category;
 
-    private String tags;
-
     private Integer status;
 
     private Integer viewCount;
@@ -29,4 +30,10 @@ public class Article {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @TableField(exist = false)
+    private List<TagVO> tags;
+
+    @TableField(exist = false)
+    private List<Long> tagIds;
 }

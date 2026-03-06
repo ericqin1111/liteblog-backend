@@ -81,23 +81,31 @@ public class ArticleController {
 
     @PostMapping("/admin/articles")
     public ResponseEntity<ResponseUtil<Article>> create(@Valid @RequestBody ArticleCreateRequest request) {
-        Article article = articleService.create(request);
-        if (article == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ResponseUtil.error(500, "创建失败"));
+        try {
+            Article article = articleService.create(request);
+            if (article == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(ResponseUtil.error(500, "创建失败"));
+            }
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(ResponseUtil.success("创建成功", article));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ResponseUtil.error(400, ex.getMessage()));
         }
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ResponseUtil.success("创建成功", article));
     }
 
     @PutMapping("/admin/articles/{id}")
     public ResponseEntity<ResponseUtil<?>> update(@PathVariable Long id, @Valid @RequestBody ArticleUpdateRequest request) {
-        boolean updated = articleService.update(id, request);
-        if (!updated) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(ResponseUtil.error(404, "文章不存在"));
+        try {
+            boolean updated = articleService.update(id, request);
+            if (!updated) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(ResponseUtil.error(404, "文章不存在"));
+            }
+            return ResponseEntity.ok(ResponseUtil.success("更新成功", null));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ResponseUtil.error(400, ex.getMessage()));
         }
-        return ResponseEntity.ok(ResponseUtil.success("更新成功", null));
     }
 
     @PutMapping("/admin/articles/{id}/status")

@@ -31,6 +31,20 @@ CREATE TABLE IF NOT EXISTS access_log (
     INDEX idx_article_id (article_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='访问日志表';
 
+-- 标签表
+CREATE TABLE IF NOT EXISTS tag (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',
+    name VARCHAR(64) NOT NULL UNIQUE COMMENT '标签名'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='标签表';
+
+-- 文章-标签关联表
+CREATE TABLE IF NOT EXISTS article_tag (
+    article_id BIGINT NOT NULL COMMENT '文章ID',
+    tag_id BIGINT NOT NULL COMMENT '标签ID',
+    PRIMARY KEY (article_id, tag_id),
+    INDEX idx_tag_id (tag_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='文章标签关联表';
+
 -- 管理员表
 CREATE TABLE IF NOT EXISTS admin (
     id INT PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',

@@ -5,20 +5,24 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liteblog.dto.ArticleCreateRequest;
 import com.liteblog.dto.ArticleUpdateRequest;
+import com.liteblog.dto.TagVO;
 import com.liteblog.entity.Article;
 import com.liteblog.mapper.ArticleMapper;
 import com.liteblog.service.ArticleService;
+import com.liteblog.service.TagService;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -29,11 +33,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleMapper articleMapper;
     private final StringRedisTemplate redisTemplate;
+    private final TagService tagService;
 
-    @Autowired
-    public ArticleServiceImpl(ArticleMapper articleMapper, StringRedisTemplate redisTemplate) {
+    public ArticleServiceImpl(ArticleMapper articleMapper, StringRedisTemplate redisTemplate, TagService tagService) {
         this.articleMapper = articleMapper;
         this.redisTemplate = redisTemplate;
+        this.tagService = tagService;
     }
 
     @Override
@@ -47,16 +52,22 @@ public class ArticleServiceImpl implements ArticleService {
         if (StringUtils.hasText(keyword)) {
             wrapper.and(w -> w.like("title", keyword)
                     .or()
-                    .like("tags", keyword)
+                    .like("category", keyword)
                     .or()
-                    .like("category", keyword));
+                    .apply(
+                            "EXISTS (SELECT 1 FROM article_tag at JOIN tag t ON at.tag_id = t.id " +
+                                    "WHERE at.article_id = article.id AND t.name LIKE {0})",
+                            "%" + keyword + "%"
+                    ));
         }
         if ("popular".equals(sort)) {
             wrapper.orderByDesc("view_count");
         } else {
             wrapper.orderByDesc("created_at");
         }
-        return articleMapper.selectPage(result, wrapper);
+        Page<Article> pageResult = articleMapper.selectPage(result, wrapper);
+        hydrateTags(pageResult.getRecords());
+        return pageResult;
     }
 
     @Override
@@ -80,6 +91,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (article == null) {
             return null;
         }
+        hydrateTags(Collections.singletonList(article));
 
         String ip = getClientIp();
         if (!StringUtils.hasText(ip)) {
@@ -119,28 +131,40 @@ public class ArticleServiceImpl implements ArticleService {
             wrapper.eq("status", status);
         }
         wrapper.orderByDesc("created_at");
-        return articleMapper.selectPage(result, wrapper);
+        Page<Article> pageResult = articleMapper.selectPage(result, wrapper);
+        hydrateTags(pageResult.getRecords());
+        return pageResult;
     }
 
     @Override
     public Article getById(Long id) {
-        return articleMapper.selectById(id);
+        Article article = articleMapper.selectById(id);
+        if (article != null) {
+            hydrateTags(Collections.singletonList(article));
+        }
+        return article;
     }
 
     @Override
+    @Transactional
     public Article create(ArticleCreateRequest request) {
         Article article = new Article();
         article.setTitle(request.getTitle());
         article.setContent(request.getContent());
         article.setCategory(request.getCategory());
-        article.setTags(request.getTags());
         article.setStatus(request.getStatus() == null ? 0 : request.getStatus());
         article.setViewCount(0);
         int inserted = articleMapper.insert(article);
-        return inserted > 0 ? article : null;
+        if (inserted <= 0) {
+            return null;
+        }
+        tagService.replaceArticleTags(article.getId(), request.getTagIds());
+        hydrateTags(Collections.singletonList(article));
+        return article;
     }
 
     @Override
+    @Transactional
     public boolean update(Long id, ArticleUpdateRequest request) {
         Article existing = articleMapper.selectById(id);
         if (existing == null) {
@@ -149,11 +173,15 @@ public class ArticleServiceImpl implements ArticleService {
         existing.setTitle(request.getTitle());
         existing.setContent(request.getContent());
         existing.setCategory(request.getCategory());
-        existing.setTags(request.getTags());
         if (request.getStatus() != null) {
             existing.setStatus(request.getStatus());
         }
-        return articleMapper.updateById(existing) > 0;
+        boolean updated = articleMapper.updateById(existing) > 0;
+        if (!updated) {
+            return false;
+        }
+        tagService.replaceArticleTags(id, request.getTagIds());
+        return true;
     }
 
     @Override
@@ -167,7 +195,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public boolean delete(Long id) {
+        tagService.replaceArticleTags(id, Collections.emptyList());
         return articleMapper.deleteById(id) > 0;
     }
 
@@ -191,5 +221,18 @@ public class ArticleServiceImpl implements ArticleService {
             return realIp;
         }
         return request.getRemoteAddr();
+    }
+
+    private void hydrateTags(List<Article> articles) {
+        if (articles == null || articles.isEmpty()) {
+            return;
+        }
+        List<Long> articleIds = articles.stream().map(Article::getId).collect(Collectors.toList());
+        Map<Long, List<TagVO>> tagsByArticleId = tagService.mapTagsByArticleIds(articleIds);
+        for (Article article : articles) {
+            List<TagVO> tags = tagsByArticleId.getOrDefault(article.getId(), Collections.emptyList());
+            article.setTags(tags);
+            article.setTagIds(tags.stream().map(TagVO::getId).collect(Collectors.toList()));
+        }
     }
 }

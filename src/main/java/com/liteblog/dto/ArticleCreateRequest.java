@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ArticleCreateRequest {
 
@@ -17,8 +19,7 @@ public class ArticleCreateRequest {
     @Size(max = 50, message = "分类长度不能超过50")
     private String category;
 
-    @Size(max = 255, message = "标签长度不能超过255")
-    private String tags;
+    private List<Long> tagIds;
 
     private Integer status;
 }
