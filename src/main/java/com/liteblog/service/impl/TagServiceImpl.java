@@ -1,6 +1,7 @@
 package com.liteblog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.liteblog.dto.AdminTagVO;
 import com.liteblog.dto.ArticleTagRowDTO;
 import com.liteblog.dto.TagVO;
 import com.liteblog.entity.Tag;
@@ -46,6 +47,11 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    public List<AdminTagVO> listAllForAdmin() {
+        return tagMapper.selectAdminTags();
+    }
+
+    @Override
     @Transactional
     public Tag create(String rawName) {
         String name = normalize(rawName);
@@ -64,6 +70,19 @@ public class TagServiceImpl implements TagService {
             throw new IllegalStateException("创建标签失败");
         }
         return created;
+    }
+
+    @Override
+    public boolean exists(Long id) {
+        return id != null && tagMapper.selectById(id) != null;
+    }
+
+    @Override
+    public long countArticlesByTagId(Long id) {
+        if (id == null) {
+            return 0;
+        }
+        return tagMapper.countArticleByTagId(id);
     }
 
     @Override

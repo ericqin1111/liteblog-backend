@@ -20,9 +20,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -164,7 +168,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (inserted <= 0) {
             return null;
         }
-        tagService.replaceArticleTags(article.getId(), request.getTagIds());
+        tagService.replaceArticleTags(article.getId(), resolveTagIds(request.getTagIds(), request.getTagNames()));
         hydrateTags(Collections.singletonList(article));
         return article;
     }
@@ -186,7 +190,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (!updated) {
             return false;
         }
-        tagService.replaceArticleTags(id, request.getTagIds());
+        tagService.replaceArticleTags(id, resolveTagIds(request.getTagIds(), request.getTagNames()));
         return true;
     }
 
@@ -240,5 +244,21 @@ public class ArticleServiceImpl implements ArticleService {
             article.setTags(tags);
             article.setTagIds(tags.stream().map(TagVO::getId).collect(Collectors.toList()));
         }
+    }
+
+    private List<Long> resolveTagIds(List<Long> tagIds, List<String> tagNames) {
+        Set<Long> resolved = new LinkedHashSet<>();
+        if (tagIds != null) {
+            resolved.addAll(tagIds.stream().filter(Objects::nonNull).collect(Collectors.toList()));
+        }
+        if (tagNames != null) {
+            for (String rawName : tagNames) {
+                if (!StringUtils.hasText(rawName)) {
+                    continue;
+                }
+                resolved.add(tagService.create(rawName).getId());
+            }
+        }
+        return new ArrayList<>(resolved);
     }
 }

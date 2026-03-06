@@ -21,5 +21,7 @@ public class ArticleCreateRequest {
 
     private List<Long> tagIds;
 
+    private List<String> tagNames;
+
     private Integer status;
 }
