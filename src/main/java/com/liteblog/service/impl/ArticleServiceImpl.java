@@ -42,12 +42,18 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> listPublished(int page, int size, String category, String keyword, String sort) {
+    public Page<Article> listPublished(int page, int size, String category, String keyword, String sort, Long tagId) {
         Page<Article> result = new Page<>(page, size);
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("status", 1);
         if (StringUtils.hasText(category)) {
             wrapper.eq("category", category);
+        }
+        if (tagId != null) {
+            wrapper.apply(
+                    "EXISTS (SELECT 1 FROM article_tag at WHERE at.article_id = article.id AND at.tag_id = {0})",
+                    tagId
+            );
         }
         if (StringUtils.hasText(keyword)) {
             wrapper.and(w -> w.like("title", keyword)

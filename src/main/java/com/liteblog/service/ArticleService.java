@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ArticleService {
 
-    Page<Article> listPublished(int page, int size, String category, String keyword, String sort);
+    Page<Article> listPublished(int page, int size, String category, String keyword, String sort, Long tagId);
 
     List<String> listPublishedCategories();
 
