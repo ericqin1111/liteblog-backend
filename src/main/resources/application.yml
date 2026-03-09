@@ -3,11 +3,18 @@ spring:
     name: liteblog
   profiles:
     active: dev
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
 
 server:
   port: 8080
   servlet:
     context-path: /api
+
+blog:
+  upload-dir: ${BLOG_UPLOAD_DIR:./uploads}
 
 # JWT 配置
 jwt:
