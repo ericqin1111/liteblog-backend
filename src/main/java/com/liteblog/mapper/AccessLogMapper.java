@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.liteblog.dto.DailyTrendDTO;
 import com.liteblog.dto.IpRecordDTO;
 import com.liteblog.dto.PopularArticleDTO;
+import com.liteblog.dto.VisitorDetailDTO;
+import com.liteblog.dto.VisitorSummaryDTO;
 import com.liteblog.entity.AccessLog;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -74,6 +76,40 @@ public interface AccessLogMapper extends BaseMapper<AccessLog> {
             WHERE uri NOT LIKE '/api/admin/%'
             """)
     Long countIpRecordGroups();
+
+    @Select("""
+            SELECT ip_address,
+                   MAX(access_time) AS last_visit,
+                   COUNT(*) AS visit_count,
+                   COUNT(DISTINCT article_id) AS article_count
+            FROM access_log
+            WHERE uri NOT LIKE '/api/admin/%'
+            GROUP BY ip_address
+            ORDER BY last_visit DESC
+            LIMIT #{offset}, #{size}
+            """)
+    List<VisitorSummaryDTO> selectRecentVisitors(@Param("offset") long offset, @Param("size") int size);
+
+    @Select("""
+            SELECT COUNT(DISTINCT ip_address)
+            FROM access_log
+            WHERE uri NOT LIKE '/api/admin/%'
+            """)
+    Long countVisitors();
+
+    @Select("""
+            SELECT al.uri,
+                   al.article_id,
+                   a.title AS article_title,
+                   al.access_time AS visit_time
+            FROM access_log al
+            LEFT JOIN article a ON al.article_id = a.id
+            WHERE al.ip_address = #{ip}
+              AND al.uri NOT LIKE '/api/admin/%'
+            ORDER BY al.access_time DESC
+            LIMIT #{limit}
+            """)
+    List<VisitorDetailDTO> selectVisitorDetail(@Param("ip") String ip, @Param("limit") int limit);
 
     @Select("""
             SELECT DATE(access_time) AS date,

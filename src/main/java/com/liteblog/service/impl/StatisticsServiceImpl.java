@@ -7,6 +7,8 @@ import com.liteblog.dto.IpRecordDTO;
 import com.liteblog.dto.OverviewStats;
 import com.liteblog.dto.PopularArticleDTO;
 import com.liteblog.dto.RecentVisitDTO;
+import com.liteblog.dto.VisitorDetailDTO;
+import com.liteblog.dto.VisitorSummaryDTO;
 import com.liteblog.entity.AccessLog;
 import com.liteblog.mapper.AccessLogMapper;
 import com.liteblog.mapper.ArticleMapper;
@@ -80,6 +82,21 @@ public class StatisticsServiceImpl implements StatisticsService {
     public List<DailyTrendDTO> getDailyTrend(int days) {
         // 传入 days-1 使 SQL 的 INTERVAL N DAY 查询恰好覆盖近 days 天（含今天）
         return accessLogMapper.selectDailyTrend(Math.max(days - 1, 0));
+    }
+
+    @Override
+    public Page<VisitorSummaryDTO> getRecentVisitors(int page, int size) {
+        long offset = (long) (page - 1) * size;
+        List<VisitorSummaryDTO> records = accessLogMapper.selectRecentVisitors(offset, size);
+        long total = accessLogMapper.countVisitors();
+        Page<VisitorSummaryDTO> result = new Page<>(page, size, total);
+        result.setRecords(records);
+        return result;
+    }
+
+    @Override
+    public List<VisitorDetailDTO> getVisitorDetail(String ip, int limit) {
+        return accessLogMapper.selectVisitorDetail(ip, limit);
     }
 
     private RecentVisitDTO mapToRecentVisit(AccessLog log) {

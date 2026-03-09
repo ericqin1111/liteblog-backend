@@ -6,6 +6,8 @@ import com.liteblog.dto.IpRecordDTO;
 import com.liteblog.dto.OverviewStats;
 import com.liteblog.dto.PopularArticleDTO;
 import com.liteblog.dto.RecentVisitDTO;
+import com.liteblog.dto.VisitorDetailDTO;
+import com.liteblog.dto.VisitorSummaryDTO;
 import com.liteblog.service.StatisticsService;
 import com.liteblog.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +64,23 @@ public class StatisticsController {
     public ResponseUtil<List<DailyTrendDTO>> dailyTrend(@RequestParam(defaultValue = "7") int days) {
         int safeDays = days < 1 ? 7 : Math.min(days, 90);
         return ResponseUtil.success(statisticsService.getDailyTrend(safeDays));
+    }
+
+    @GetMapping("/visitors")
+    public ResponseUtil<?> recentVisitors(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        int safePage = page < 1 ? 1 : page;
+        int safeSize = size < 1 ? 20 : Math.min(size, 100);
+        Page<VisitorSummaryDTO> result = statisticsService.getRecentVisitors(safePage, safeSize);
+        return ResponseUtil.page(result.getTotal(), result.getCurrent(), result.getSize(), result.getRecords());
+    }
+
+    @GetMapping("/visitor-detail")
+    public ResponseUtil<List<VisitorDetailDTO>> visitorDetail(
+            @RequestParam String ip,
+            @RequestParam(defaultValue = "50") int limit) {
+        int safeLimit = limit < 1 ? 50 : Math.min(limit, 200);
+        return ResponseUtil.success(statisticsService.getVisitorDetail(ip, safeLimit));
     }
 }
