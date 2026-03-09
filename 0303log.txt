@@ -1,0 +1,153 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.liteblog:blog-backend >----------------------
+[INFO] Building Lite-Blog Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ blog-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ blog-backend ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ blog-backend ---
+[INFO] skip non existing resourceDirectory /home/qinric/gitrepo/blog/blog-backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ blog-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ blog-backend ---
+[INFO] Attaching agents: []
+16:48:28,687 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.14
+16:48:28,689 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Here is a list of configurators discovered as a service, by rank: 
+16:48:28,689 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e -   org.springframework.boot.logging.logback.RootLogLevelConfigurator
+16:48:28,689 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - They will be invoked in order until ExecutionStatus.DO_NOT_INVOKE_NEXT_IF_ANY is returned.
+16:48:28,689 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class org.springframework.boot.logging.logback.RootLogLevelConfigurator
+16:48:28,695 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - org.springframework.boot.logging.logback.RootLogLevelConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+16:48:28,695 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+16:48:28,696 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+16:48:28,697 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+16:48:28,698 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+16:48:28,698 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+16:48:28,698 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+16:48:28,698 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+16:48:28,698 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+16:48:28,699 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.xml]
+16:48:28,699 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 1 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+16:48:28,699 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.BasicConfigurator
+16:48:28,699 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.BasicConfigurator
+16:48:28,699 |-INFO in ch.qos.logback.classic.BasicConfigurator@6a55299e - Setting up default configuration.
+16:48:28,708 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.BasicConfigurator.configure() call lasted 9 milliseconds. ExecutionStatus=NEUTRAL
+16:48:28,944 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+16:48:28,944 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+16:48:28,946 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+16:48:28,951 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [FILE] not referenced. Skipping further processing.
+16:48:28,951 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+16:48:28,951 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@2f1de2d6 - Propagating INFO level on Logger[ROOT] onto the JUL framework
+16:48:28,952 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+16:48:28,952 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@4eb386df - End of configuration.
+16:48:28,952 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@79517588 - Registering current configuration as safe fallback point
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2026-03-03 16:48:28 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-03-03 16:48:28 [main] INFO  com.liteblog.BlogApplication - Starting BlogApplication using Java 17.0.16 with PID 692229 (/home/qinric/gitrepo/blog/blog-backend/target/classes started by qinric in /home/qinric/gitrepo/blog/blog-backend)
+2026-03-03 16:48:28 [main] INFO  com.liteblog.BlogApplication - The following 1 profile is active: "dev"
+2026-03-03 16:48:29 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-03 16:48:29 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-03-03 16:48:29 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2026-03-03 16:48:29 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-03 16:48:29 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-03 16:48:29 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-03 16:48:29 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-03-03 16:48:29 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-03-03 16:48:29 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 763 ms
+2026-03-03 16:48:29 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2026-03-03 16:48:29 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Use localhost address 
+Get qinric-Nitro-AN515-58/127.0.1.1 network interface 
+Get network interface info: null
+Unable to get network interface for qinric-Nitro-AN515-58/127.0.1.1
+Initialization Sequence datacenterId:1 workerId:27
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.6 
+2026-03-03 16:48:30 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-03 16:48:30 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-03-03 16:48:30 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-03-03 16:48:30 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2026-03-03 16:48:30 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-03-03 16:48:30 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:287)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:467)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:256)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:201)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:978)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.liteblog.BlogApplication.main(BlogApplication.java:12)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:249)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:284)
+	... 13 common frames omitted
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:235)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:306)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:234)
+	... 15 common frames omitted
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1046)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:171)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:232)
+	... 17 common frames omitted
+Caused by: java.net.BindException: 地址已在使用
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:337)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:294)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:247)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:202)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1280)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1366)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:635)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1043)
+	... 19 common frames omitted
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.396 s
+[INFO] Finished at: 2026-03-03T16:48:31+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.2:run (default-cli) on project blog-backend: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

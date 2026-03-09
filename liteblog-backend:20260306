@@ -1,0 +1,376 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.liteblog:blog-backend >----------------------
+[INFO] Building Lite-Blog Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ blog-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ blog-backend ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ blog-backend ---
+[INFO] skip non existing resourceDirectory /home/qinric/gitrepo/blog/blog-backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ blog-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ blog-backend ---
+[INFO] Attaching agents: []
+15:15:49,830 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.14
+15:15:49,831 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Here is a list of configurators discovered as a service, by rank: 
+15:15:49,831 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e -   org.springframework.boot.logging.logback.RootLogLevelConfigurator
+15:15:49,831 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - They will be invoked in order until ExecutionStatus.DO_NOT_INVOKE_NEXT_IF_ANY is returned.
+15:15:49,831 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class org.springframework.boot.logging.logback.RootLogLevelConfigurator
+15:15:49,838 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - org.springframework.boot.logging.logback.RootLogLevelConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:15:49,838 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+15:15:49,838 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+15:15:49,839 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+15:15:49,840 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+15:15:49,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:15:49,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+15:15:49,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+15:15:49,840 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+15:15:49,840 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.xml]
+15:15:49,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:15:49,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.BasicConfigurator
+15:15:49,841 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.BasicConfigurator
+15:15:49,841 |-INFO in ch.qos.logback.classic.BasicConfigurator@6a55299e - Setting up default configuration.
+15:15:49,848 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.BasicConfigurator.configure() call lasted 7 milliseconds. ExecutionStatus=NEUTRAL
+15:15:50,054 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+15:15:50,054 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+15:15:50,056 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+15:15:50,061 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [FILE] not referenced. Skipping further processing.
+15:15:50,061 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+15:15:50,061 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@2f1de2d6 - Propagating INFO level on Logger[ROOT] onto the JUL framework
+15:15:50,061 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+15:15:50,061 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@4eb386df - End of configuration.
+15:15:50,061 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@79517588 - Registering current configuration as safe fallback point
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2026-03-06 15:15:50 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-03-06 15:15:50 [main] INFO  com.liteblog.BlogApplication - Starting BlogApplication using Java 17.0.16 with PID 632830 (/home/qinric/gitrepo/blog/blog-backend/target/classes started by qinric in /home/qinric/gitrepo/blog/blog-backend)
+2026-03-06 15:15:50 [main] INFO  com.liteblog.BlogApplication - The following 1 profile is active: "dev"
+2026-03-06 15:15:50 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-06 15:15:50 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-03-06 15:15:50 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-03-06 15:15:50 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-06 15:15:50 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-06 15:15:50 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-06 15:15:50 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-03-06 15:15:50 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-03-06 15:15:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 568 ms
+2026-03-06 15:15:50 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2026-03-06 15:15:50 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Use localhost address 
+Get qinric-Nitro-AN515-58/127.0.1.1 network interface 
+Get network interface info: null
+Unable to get network interface for qinric-Nitro-AN515-58/127.0.1.1
+Initialization Sequence datacenterId:1 workerId:17
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.6 
+2026-03-06 15:15:51 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-06 15:15:51 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-03-06 15:15:51 [main] INFO  com.liteblog.BlogApplication - Started BlogApplication in 1.443 seconds (process running for 1.576)
+2026-03-06 15:16:28 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-03-06 15:16:28 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  39.169 s
+[INFO] Finished at: 2026-03-06T15:16:28+08:00
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.liteblog:blog-backend >----------------------
+[INFO] Building Lite-Blog Backend 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.2:run (default-cli) > test-compile @ blog-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ blog-backend ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ blog-backend ---
+[INFO] skip non existing resourceDirectory /home/qinric/gitrepo/blog/blog-backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ blog-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.2:run (default-cli) < test-compile @ blog-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.2:run (default-cli) @ blog-backend ---
+[INFO] Attaching agents: []
+15:17:50,829 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.14
+15:17:50,830 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Here is a list of configurators discovered as a service, by rank: 
+15:17:50,830 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e -   org.springframework.boot.logging.logback.RootLogLevelConfigurator
+15:17:50,830 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - They will be invoked in order until ExecutionStatus.DO_NOT_INVOKE_NEXT_IF_ANY is returned.
+15:17:50,830 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class org.springframework.boot.logging.logback.RootLogLevelConfigurator
+15:17:50,837 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - org.springframework.boot.logging.logback.RootLogLevelConfigurator.configure() call lasted 0 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:17:50,837 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+15:17:50,837 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+15:17:50,839 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+15:17:50,839 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+15:17:50,839 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:17:50,839 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+15:17:50,839 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+15:17:50,840 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+15:17:50,840 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.xml]
+15:17:50,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 1 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+15:17:50,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Trying to configure with ch.qos.logback.classic.BasicConfigurator
+15:17:50,840 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - Constructed configurator of type class ch.qos.logback.classic.BasicConfigurator
+15:17:50,840 |-INFO in ch.qos.logback.classic.BasicConfigurator@6a55299e - Setting up default configuration.
+15:17:50,848 |-INFO in ch.qos.logback.classic.util.ContextInitializer@51acdf2e - ch.qos.logback.classic.BasicConfigurator.configure() call lasted 8 milliseconds. ExecutionStatus=NEUTRAL
+15:17:51,059 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+15:17:51,059 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+15:17:51,061 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+15:17:51,066 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [FILE] not referenced. Skipping further processing.
+15:17:51,066 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to INFO
+15:17:51,066 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@2f1de2d6 - Propagating INFO level on Logger[ROOT] onto the JUL framework
+15:17:51,066 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+15:17:51,066 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@4eb386df - End of configuration.
+15:17:51,066 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@79517588 - Registering current configuration as safe fallback point
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.2)
+
+2026-03-06 15:17:51 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-03-06 15:17:51 [main] INFO  com.liteblog.BlogApplication - Starting BlogApplication using Java 17.0.16 with PID 636486 (/home/qinric/gitrepo/blog/blog-backend/target/classes started by qinric in /home/qinric/gitrepo/blog/blog-backend)
+2026-03-06 15:17:51 [main] INFO  com.liteblog.BlogApplication - The following 1 profile is active: "dev"
+2026-03-06 15:17:51 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-03-06 15:17:51 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-03-06 15:17:51 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2026-03-06 15:17:51 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-03-06 15:17:51 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-03-06 15:17:51 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-03-06 15:17:51 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.18]
+2026-03-06 15:17:51 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2026-03-06 15:17:51 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 567 ms
+2026-03-06 15:17:51 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2026-03-06 15:17:51 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Use localhost address 
+Get qinric-Nitro-AN515-58/127.0.1.1 network interface 
+Get network interface info: null
+Unable to get network interface for qinric-Nitro-AN515-58/127.0.1.1
+Initialization Sequence datacenterId:1 workerId:10
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.6 
+2026-03-06 15:17:52 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-03-06 15:17:52 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2026-03-06 15:17:52 [main] INFO  com.liteblog.BlogApplication - Started BlogApplication in 1.427 seconds (process running for 1.558)
+2026-03-06 15:18:26 [http-nio-8080-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-06 15:18:26 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-03-06 15:18:26 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-03-06 15:18:26 [http-nio-8080-exec-1] INFO  com.liteblog.interceptor.AccessLogInterceptor - Access: IP=127.0.0.1, URI=/api/articles/categories, UserAgent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c1ad855] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a09797d] was not registered for synchronization because synchronization is not active
+2026-03-06 15:18:26 [http-nio-8080-exec-2] INFO  com.liteblog.interceptor.AccessLogInterceptor - Access: IP=127.0.0.1, URI=/api/articles, UserAgent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+2026-03-06 15:18:26 [http-nio-8080-exec-3] INFO  com.liteblog.interceptor.AccessLogInterceptor - Access: IP=127.0.0.1, URI=/api/articles, UserAgent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@523df66c] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@25662b4c] was not registered for synchronization because synchronization is not active
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@320f98ec] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@249d8911] will not be managed by Spring
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@28c7df7f] will not be managed by Spring
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@3779294e] will not be managed by Spring
+==>  Preparing: SELECT DISTINCT category FROM article WHERE (status = ? AND category IS NOT NULL AND category <> ?) ORDER BY category ASC
+==>  Preparing: INSERT INTO access_log ( ip_address, uri, user_agent, access_time ) VALUES ( ?, ?, ?, ? )
+==>  Preparing: INSERT INTO access_log ( ip_address, uri, user_agent, access_time ) VALUES ( ?, ?, ?, ? )
+==> Parameters: 1(Integer), (String)
+==> Parameters: 127.0.0.1(String), /api/articles/categories(String), Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36(String), 2026-03-06T15:18:26.755715768(LocalDateTime)
+==> Parameters: 127.0.0.1(String), /api/articles(String), Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36(String), 2026-03-06T15:18:26.778533225(LocalDateTime)
+<==    Columns: category
+<==        Row: 1
+<==        Row: 3
+<==        Row: 4
+<==        Row: å…¬å‘Š
+<==        Row: æŠ€æœ¯
+<==        Row: è¿ç»´
+<==        Row: 技术 / 数据库
+<==        Row: 技术 / 网络
+<==      Total: 8
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c1ad855]
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@523df66c]
+<==    Updates: 1
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47e2580c] was not registered for synchronization because synchronization is not active
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7a09797d]
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@249d8911] will not be managed by Spring
+==>  Preparing: INSERT INTO access_log ( ip_address, uri, user_agent, access_time ) VALUES ( ?, ?, ?, ? )
+==> Parameters: 127.0.0.1(String), /api/articles(String), Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36(String), 2026-03-06T15:18:26.778550358(LocalDateTime)
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@3779294e] will not be managed by Spring
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@28c7df7f] will not be managed by Spring
+==>  Preparing: SELECT COUNT(*) AS total FROM article WHERE (status = ?)
+==>  Preparing: SELECT COUNT(*) AS total FROM article WHERE (status = ?)
+==> Parameters: 1(Integer)
+==> Parameters: 1(Integer)
+<==    Columns: total
+<==    Columns: total
+<==        Row: 10
+<==        Row: 10
+<==      Total: 1
+<==      Total: 1
+==>  Preparing: SELECT id,title,content,category,status,view_count,created_at,updated_at FROM article WHERE (status = ?) ORDER BY created_at DESC LIMIT ?
+==>  Preparing: SELECT id,title,content,category,status,view_count,created_at,updated_at FROM article WHERE (status = ?) ORDER BY created_at DESC LIMIT ?
+==> Parameters: 1(Integer), 6(Long)
+==> Parameters: 1(Integer), 60(Long)
+<==    Columns: id, title, content, category, status, view_count, created_at, updated_at
+<==    Columns: id, title, content, category, status, view_count, created_at, updated_at
+<==        Row: 10, 1, <<BLOB>>, 1, 1, 3, 2026-03-05 18:17:56, 2026-03-06 14:25:09
+<==        Row: 10, 1, <<BLOB>>, 1, 1, 3, 2026-03-05 18:17:56, 2026-03-06 14:25:09
+<==        Row: 9, gRPC：契约驱动与高性能传输机制, <<BLOB>>, 技术 / 网络, 1, 12, 2026-03-04 15:51:00, 2026-03-06 14:57:05
+<==        Row: 9, gRPC：契约驱动与高性能传输机制, <<BLOB>>, 技术 / 网络, 1, 12, 2026-03-04 15:51:00, 2026-03-06 14:57:05
+<==        Row: 8, 4, <<BLOB>>, 4, 1, 4, 2026-03-04 09:47:21, 2026-03-05 13:48:06
+<==        Row: 8, 4, <<BLOB>>, 4, 1, 4, 2026-03-04 09:47:21, 2026-03-05 13:48:06
+<==        Row: 7, 3, <<BLOB>>, 3, 1, 6, 2026-03-04 09:47:17, 2026-03-06 14:05:06
+<==        Row: 6, 2, <<BLOB>>, 技术 / 数据库, 1, 9, 2026-03-04 09:47:13, 2026-03-06 14:57:14
+<==        Row: 7, 3, <<BLOB>>, 3, 1, 6, 2026-03-04 09:47:17, 2026-03-06 14:05:06
+<==        Row: 5, 1, <<BLOB>>, 1, 1, 4, 2026-03-04 09:47:06, 2026-03-06 15:00:41
+<==      Total: 6
+<==        Row: 6, 2, <<BLOB>>, 技术 / 数据库, 1, 9, 2026-03-04 09:47:13, 2026-03-06 14:57:14
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@320f98ec]
+<==        Row: 5, 1, <<BLOB>>, 1, 1, 4, 2026-03-04 09:47:06, 2026-03-06 15:00:41
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e86c989] was not registered for synchronization because synchronization is not active
+<==        Row: 1, æ¬¢è¿Žä½¿ç”¨ Lite-Blog, <<BLOB>>, å…¬å‘Š, 1, 7, 2026-03-03 16:25:52, 2026-03-06 14:03:46
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@47e2580c]
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@28c7df7f] will not be managed by Spring
+==>  Preparing: SELECT at.article_id AS articleId, t.id AS id, t.name AS name FROM article_tag at JOIN tag t ON at.tag_id = t.id WHERE at.article_id IN ( ? , ? , ? , ? , ? , ? ) ORDER BY t.name ASC
+==> Parameters: 10(Long), 9(Long), 8(Long), 7(Long), 6(Long), 5(Long)
+<==        Row: 2, Spring Boot 3.x å¿«é€Ÿå…¥é—¨, <<BLOB>>, æŠ€æœ¯, 1, 6, 2026-03-03 16:25:52, 2026-03-06 13:47:39
+<==        Row: 3, Vue 3 Composition API å®žè·µ, <<BLOB>>, æŠ€æœ¯, 1, 9, 2026-03-03 16:25:52, 2026-03-05 18:33:27
+<==        Row: 4, Docker éƒ¨ç½²æŒ‡å—, <<BLOB>>, è¿ç»´, 1, 4, 2026-03-03 16:25:52, 2026-03-06 14:57:25
+<==    Columns: articleId, id, name
+<==        Row: 10, 31, 10
+<==        Row: 10, 25, 2
+<==        Row: 10, 13, 3
+<==        Row: 7, 13, 3
+<==        Row: 8, 14, 4
+<==        Row: 10, 14, 4
+<==        Row: 10, 26, 5
+<==        Row: 10, 27, 6
+<==        Row: 10, 28, 7
+<==        Row: 10, 29, 8
+<==        Row: 10, 30, 9
+<==        Row: 6, 12, database
+<==        Row: 9, 15, gRPC
+<==        Row: 9, 17, HTTP/2
+<==        Row: 6, 10, mysql
+<==        Row: 9, 18, netty
+<==      Total: 10
+<==        Row: 9, 16, Protobuf
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@25662b4c]
+<==        Row: 6, 11, redis
+<==      Total: 18
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2e86c989]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d3bf984] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@28c7df7f] will not be managed by Spring
+==>  Preparing: SELECT at.article_id AS articleId, t.id AS id, t.name AS name FROM article_tag at JOIN tag t ON at.tag_id = t.id WHERE at.article_id IN ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) ORDER BY t.name ASC
+==> Parameters: 10(Long), 9(Long), 8(Long), 7(Long), 6(Long), 5(Long), 1(Long), 2(Long), 3(Long), 4(Long)
+<==    Columns: articleId, id, name
+<==        Row: 10, 31, 10
+<==        Row: 10, 25, 2
+<==        Row: 10, 13, 3
+<==        Row: 7, 13, 3
+<==        Row: 10, 14, 4
+<==        Row: 8, 14, 4
+<==        Row: 10, 26, 5
+<==        Row: 10, 27, 6
+<==        Row: 10, 28, 7
+<==        Row: 10, 29, 8
+<==        Row: 10, 30, 9
+<==        Row: 1, 2, æ¬¢è¿Ž
+<==        Row: 6, 12, database
+<==        Row: 4, 7, Docker
+<==        Row: 4, 8, éƒ¨ç½²
+<==        Row: 9, 15, gRPC
+<==        Row: 9, 17, HTTP/2
+<==        Row: 2, 3, Java
+<==        Row: 3, 6, JavaScript
+<==        Row: 1, 1, Lite-Blog
+<==        Row: 6, 10, mysql
+<==        Row: 9, 18, netty
+<==        Row: 9, 16, Protobuf
+<==        Row: 6, 11, redis
+<==        Row: 2, 4, Spring Boot
+<==        Row: 3, 5, Vue
+<==      Total: 26
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d3bf984]
+2026-03-06 15:18:26 [http-nio-8080-exec-4] INFO  com.liteblog.interceptor.AccessLogInterceptor - Access: IP=127.0.0.1, URI=/api/articles/categories, UserAgent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3807e86a] was not registered for synchronization because synchronization is not active
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fd34964] was not registered for synchronization because synchronization is not active
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@28c7df7f] will not be managed by Spring
+==>  Preparing: INSERT INTO access_log ( ip_address, uri, user_agent, access_time ) VALUES ( ?, ?, ?, ? )
+==> Parameters: 127.0.0.1(String), /api/articles/categories(String), Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36(String), 2026-03-06T15:18:26.848448425(LocalDateTime)
+JDBC Connection [com.alibaba.druid.pool.DruidStatementConnection@3779294e] will not be managed by Spring
+==>  Preparing: SELECT DISTINCT category FROM article WHERE (status = ? AND category IS NOT NULL AND category <> ?) ORDER BY category ASC
+==> Parameters: 1(Integer), (String)
+<==    Columns: category
+<==        Row: 1
+<==        Row: 3
+<==        Row: 4
+<==        Row: å…¬å‘Š
+<==        Row: æŠ€æœ¯
+<==        Row: è¿ç»´
+<==        Row: 技术 / 数据库
+<==        Row: 技术 / 网络
+<==      Total: 8
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fd34964]
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3807e86a]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10:16 min
+[INFO] Finished at: 2026-03-06T15:28:06+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.2:run (default-cli) on project blog-backend: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
