@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.liteblog.dto.TagVO;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class Article {
     private Integer status;
 
     private Integer viewCount;
+
+    private LocalDate publishedDate;
 
     private LocalDateTime createdAt;
 

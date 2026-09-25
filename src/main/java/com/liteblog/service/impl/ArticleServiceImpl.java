@@ -20,6 +20,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -73,7 +74,7 @@ public class ArticleServiceImpl implements ArticleService {
         if ("popular".equals(sort)) {
             wrapper.orderByDesc("view_count");
         } else {
-            wrapper.orderByDesc("created_at");
+            wrapper.orderByDesc("COALESCE(published_date, DATE(created_at))", "created_at", "id");
         }
         Page<Article> pageResult = articleMapper.selectPage(result, wrapper);
         hydrateTags(pageResult.getRecords());
@@ -140,7 +141,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (status != null) {
             wrapper.eq("status", status);
         }
-        wrapper.orderByDesc("created_at");
+        wrapper.orderByDesc("COALESCE(published_date, DATE(created_at))", "created_at", "id");
         Page<Article> pageResult = articleMapper.selectPage(result, wrapper);
         hydrateTags(pageResult.getRecords());
         return pageResult;
@@ -164,6 +165,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setCategory(request.getCategory());
         article.setStatus(request.getStatus() == null ? 0 : request.getStatus());
         article.setViewCount(0);
+        article.setPublishedDate(request.getPublishedDate() == null ? LocalDate.now() : request.getPublishedDate());
         int inserted = articleMapper.insert(article);
         if (inserted <= 0) {
             return null;
@@ -183,6 +185,9 @@ public class ArticleServiceImpl implements ArticleService {
         existing.setTitle(request.getTitle());
         existing.setContent(request.getContent());
         existing.setCategory(request.getCategory());
+        if (request.getPublishedDate() != null) {
+            existing.setPublishedDate(request.getPublishedDate());
+        }
         if (request.getStatus() != null) {
             existing.setStatus(request.getStatus());
         }

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS article (
     tags VARCHAR(255) DEFAULT NULL COMMENT '标签（逗号分隔）',
     status TINYINT DEFAULT 0 COMMENT '状态：0=草稿，1=已发布',
     view_count INT DEFAULT 0 COMMENT '阅读量',
+    published_date DATE DEFAULT NULL COMMENT '发布日期',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     INDEX idx_status (status),
